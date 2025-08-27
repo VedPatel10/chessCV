@@ -23,7 +23,10 @@ The task of mapping images of chessboards to valid FEN strings involves:
 
 Traditional approaches often fail to generalize under varied lighting, camera angles, or board styles. By combining a tailored preprocessing pipeline with a CNN designed for spatial reasoning, this project demonstrates significant improvements in robustness and accuracy.
 
-![Project Illustration](images/Illustration-Model Overview.png)
+<p align="center">
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/Illustration-Model%20Overview.png?raw=true" alt="Project Illustration" width="600"/>
+</p>
+
 ---
 
 ## Image Processing Pipeline  
@@ -34,7 +37,18 @@ The preprocessing pipeline consists of the following steps:
 - **Corner Detection & Ordering** to identify the four board corners.  
 - **Perspective Warping** to produce a normalized **256×256 top-down chessboard image**.  
 
-*(A sample pipeline visualization can be added here)*
+<p align="center">
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/processing%20(1).png?raw=true" alt="Processing Pipeline" width="650"/>
+</p>
+
+---
+
+## Baseline Model  
+A classical machine learning baseline was implemented using **Support Vector Machines (SVMs)** trained on **Histogram of Oriented Gradients (HOG)** features extracted from square-level images. The SVM achieved ~68% tile-level accuracy, performing well on distinctive pieces like queens and bishops, but struggling on low-contrast classes such as empty squares and kings. This baseline highlighted the difficulty of the problem and demonstrated the necessity of a deep learning approach.  
+
+<p align="center">
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/baseline_confusion.png?raw=true" alt="Baseline Confusion Matrix" width="500"/>
+</p>
 
 ---
 
@@ -45,19 +59,28 @@ The final model (Model #3) is a **Residual CNN** with:
 - Adaptive Average Pooling mapped to an **8×8 chessboard grid**  
 - Classifier head outputting shape `(B, 64, 13)`  
 
-*(Model diagram can be inserted here)*
-
----
-
-## Baseline Model  
-A classical machine learning baseline was implemented using **Support Vector Machines (SVMs)** trained on **Histogram of Oriented Gradients (HOG)** features extracted from square-level images. The SVM achieved ~68% tile-level accuracy, performing well on distinctive pieces like queens and bishops, but struggling on low-contrast classes such as empty squares and kings. This baseline highlighted the difficulty of the problem and demonstrated the necessity of a deep learning approach.  
+<p align="center">
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/model_architecture.png?raw=true" alt="Model Architecture" width="500"/>
+</p>
 
 ---
 
 ## Results  
 - **Full-board FEN accuracy:** **63.96%**  
-- **Per-square accuracy:** Significantly higher across most piece classes, with strong performance on common pieces like pawns and rooks.  
+- **Per-square accuracy:** Significantly higher across most piece classes, with especially strong performance on common pieces like pawns and rooks.  
 - **Comparison to state-of-the-art:** Prior best ≈ **15%** full-board FEN accuracy (ChessReD baseline). This approach improves that by over **4×**.  
+
+<!-- Side-by-side: Final Board Error Count + Confusion Matrix -->
+<div align="center">
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/Final%20Model%20Errors%20Bar%20Graph.png?raw=true" alt="Final Board Error Count" width="48%"/>
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/test_confusion.png?raw=true" alt="Test Confusion Matrix" width="48%"/>
+</div>
+
+<!-- Train/Val curves below, matching the combined width -->
+<p align="center">
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/Train-Val%20Accuracy%20and%20Loss%20Graphs.png?raw=true" alt="Train/Val Curves" width="96%"/>
+</p>
+
 
 ---
 
