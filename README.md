@@ -23,6 +23,7 @@ The task of mapping images of chessboards to valid FEN strings involves:
 
 Traditional approaches often fail to generalize under varied lighting, camera angles, or board styles. By combining a tailored preprocessing pipeline with a CNN designed for spatial reasoning, this project demonstrates significant improvements in robustness and accuracy.
 
+![Project Illustration](images/Illustration-Model Overview.png)
 ---
 
 ## Image Processing Pipeline  
