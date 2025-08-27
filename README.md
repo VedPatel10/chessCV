@@ -1,2 +1,81 @@
-# chessCV
-Deep learning pipeline that converts real chessboard images (all angles) into a FEN string by overhead warping with edge detection and CNN for tile classification.
+# chessCV: FEN String Generation from Chessboard Images
+
+## Overview  
+This project focuses on generating **Forsyth–Edwards Notation (FEN)** strings directly from images of real-world chessboards captured at angles. Using the [ChessReD dataset](https://arxiv.org/abs/2310.04086), a complete **image processing pipeline** and a custom **Convolutional Neural Network (CNN)** were developed to achieve state-of-the-art accuracy.  
+
+Previous state-of-the-art methods reached only ~15% full-board FEN accuracy. The final model achieves **63.96% full-board accuracy**, representing a **4× improvement** over prior work.
+
+---
+
+## Repository Structure
+- **`setup.ipynb`** – Environment and library setup (split from original `chess.ipynb` for GitHub compatibility).  
+- **`preprocessing.ipynb`** – Dataset preparation and preprocessing steps.  
+- **`train.ipynb`** – Model training, evaluation, and results.  
+- **`chess.ipynb`** – Original complete notebook (too large to host on GitHub; split into above components).  
+
+---
+
+## Background  
+The task of mapping images of chessboards to valid FEN strings involves:  
+1. Detecting the board from an angled camera perspective.  
+2. Warping the detected board into a **bird’s-eye view**.  
+3. Classifying each of the 64 squares into one of 13 classes (6 white pieces, 6 black pieces, or empty).  
+4. Reconstructing the FEN string.  
+
+Traditional approaches often fail to generalize under varied lighting, camera angles, or board styles. By combining a tailored preprocessing pipeline with a CNN designed for spatial reasoning, this project demonstrates significant improvements in robustness and accuracy.
+
+---
+
+## Image Processing Pipeline  
+The preprocessing pipeline consists of the following steps:  
+- **Edge Detection (Canny + Gaussian blur)** to highlight board boundaries.  
+- **Hough Line Transform** to detect major grid lines.  
+- **Contour Detection** to isolate the chessboard region.  
+- **Corner Detection & Ordering** to identify the four board corners.  
+- **Perspective Warping** to produce a normalized **256×256 top-down chessboard image**.  
+
+*(A sample pipeline visualization can be added here)*
+
+---
+
+## Model Architecture  
+The final model (Model #3) is a **Residual CNN** with:  
+- Initial 7×7 convolution + batch normalization + ReLU + max pooling  
+- 3 × Pre-Activation Residual Blocks for stable training  
+- Adaptive Average Pooling mapped to an **8×8 chessboard grid**  
+- Classifier head outputting shape `(B, 64, 13)`  
+
+*(Model diagram can be inserted here)*
+
+---
+
+## Baseline Model  
+A classical machine learning baseline was implemented using **Support Vector Machines (SVMs)** trained on **Histogram of Oriented Gradients (HOG)** features extracted from square-level images. The SVM achieved ~68% tile-level accuracy, performing well on distinctive pieces like queens and bishops, but struggling on low-contrast classes such as empty squares and kings. This baseline highlighted the difficulty of the problem and demonstrated the necessity of a deep learning approach.  
+
+---
+
+## Results  
+- **Full-board FEN accuracy:** **63.96%**  
+- **Per-square accuracy:** Significantly higher across most piece classes, with strong performance on common pieces like pawns and rooks.  
+- **Comparison to state-of-the-art:** Prior best ≈ **15%** full-board FEN accuracy (ChessReD baseline). This approach improves that by over **4×**.  
+
+---
+
+## Qualitative Results  
+The system performs well on clear, front-facing, well-lit boards, consistently producing exact matches between predicted and ground truth FEN strings. However, accuracy drops in challenging conditions:  
+- **Occlusion** – pawns hidden behind taller pieces like kings are often misclassified.  
+- **Lighting & Shadows** – side lighting and glare introduce noise in corner and edge detection.  
+- **Steep Angles** – far-side corners tend to misalign inward, reducing warping quality.  
+
+Despite these challenges, the pipeline remains robust across most test cases and demonstrates strong generalization within ChessReD and controlled new datasets.
+
+---
+
+## Future Work  
+Several directions exist to extend this project:  
+- **Stockfish Integration:** Predicted FEN strings can be passed to Stockfish via its Python API to provide users with the best next move in real time.  
+- **Mobile App Deployment:** Embedding the pipeline in a mobile app would allow players to take a quick photo of the board and instantly receive analysis.  
+- **Improved Preprocessing:** More reliable corner detection could reduce errors in warped images, especially under glare or partial occlusion.  
+- **Alternative Architectures:** Exploring transformer-based vision models or attention mechanisms could further improve per-square classification accuracy.  
+
+---
