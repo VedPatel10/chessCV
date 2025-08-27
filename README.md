@@ -1,14 +1,14 @@
 # chessCV: FEN String Generation from Chessboard Images
 
 ## Overview  
-This project focuses on generating **Forsyth–Edwards Notation (FEN)** strings directly from images of real-world chessboards captured at angles. Using the [ChessReD dataset]([https://arxiv.org/abs/2310.04086](https://data.4tu.nl/datasets/99b5c721-280b-450b-b058-b2900b69a90f/2)), a complete **image processing pipeline** and a custom **Convolutional Neural Network (CNN)** were developed to achieve state-of-the-art accuracy.  
+This project focuses on generating **Forsyth–Edwards Notation (FEN)** strings directly from images of real-world chessboards captured at angles. Using the [ChessReD](https://data.4tu.nl/datasets/99b5c721-280b-450b-b058-b2900b69a90f/2) dataset, a complete **image processing pipeline** and a custom **Convolutional Neural Network (CNN)** were developed to achieve state-of-the-art accuracy.  
 
 Previous state-of-the-art methods reached only ~15% full-board FEN accuracy. The final model achieves **63.96% full-board accuracy**, representing a **4× improvement** over prior work.
 
 ---
 
 ## Repository Structure
-- **`chess.ipynb`** – The complete original notebook containing the full pipeline: preprocessing, model training, and evaluation. Click [here]([https://colab.research.google.com/drive/1X_6f3QCK5oZ73d2Pce3HCc1nok8EPjDH?usp=sharing]) to view this file (too large for GitHub)  
+- **`chess.ipynb`** – The complete original notebook containing the full pipeline: preprocessing, model training, and evaluation. Click [here](https://colab.research.google.com/drive/1X_6f3QCK5oZ73d2Pce3HCc1nok8EPjDH?usp=sharing) to view this file (too large for GitHub)  
 - **`preprocessing.ipynb`** – Focused notebook containing only preprocessing steps, including image warping and board standardization.  
 - **`train.ipynb`** – Focused notebook for model creation, training, testing, and results visualization.  
 
