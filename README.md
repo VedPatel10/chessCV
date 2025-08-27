@@ -66,7 +66,7 @@ The final model (Model #3) is a **Residual CNN** with:
 ---
 
 ## Results  
-- **Full-board FEN accuracy:** **63.96%**  
+- **Full-board FEN accuracy:** **63.96%** (1145/1790 boards with full FEN construction, test dataset) 
 - **Per-square accuracy:** Significantly higher across most piece classes, with especially strong performance on common pieces like pawns and rooks.  
 - **Comparison to state-of-the-art:** Prior best ≈ **15%** full-board FEN accuracy (ChessReD baseline). This approach improves that by over **4×**.  
 
