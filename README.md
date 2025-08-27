@@ -97,16 +97,6 @@ The final model (3rd attempt with our preprocessing pipeline) is a **Residual CN
 
 ---
 
-## Qualitative Results  
-The system performs well on clear, front-facing, well-lit boards, consistently producing exact matches between predicted and ground truth FEN strings. However, accuracy drops in challenging conditions:  
-- **Occlusion** – pawns hidden behind taller pieces like kings are often misclassified.  
-- **Lighting & Shadows** – side lighting and glare introduce noise in corner and edge detection.  
-- **Steep Angles** – far-side corners tend to misalign inward, reducing warping quality.  
-
-Despite these challenges, the pipeline remains robust across most test cases and demonstrates strong generalization within ChessReD and controlled new datasets.
-
----
-
 ## Future Work  
 Several directions exist to extend this project:  
 - **Stockfish Integration:** Predicted FEN strings can be passed to Stockfish via its Python API to provide users with the best next move in real time.  
