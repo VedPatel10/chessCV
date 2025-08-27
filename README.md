@@ -53,7 +53,7 @@ A classical machine learning baseline was implemented using **Support Vector Mac
 ---
 
 ## Model Architecture  
-The final model (Model #3) is a **Residual CNN** with:  
+The final model (3rd attempt with our preprocessing pipeline) is a **Residual CNN** with:  
 - Initial 7×7 convolution + batch normalization + ReLU + max pooling  
 - 3 × Pre-Activation Residual Blocks for stable training  
 - Adaptive Average Pooling mapped to an **8×8 chessboard grid**  
