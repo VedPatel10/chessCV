@@ -5,6 +5,19 @@ This project focuses on generating **Forsyth–Edwards Notation (FEN)** strings 
 
 Previous state-of-the-art methods reached only ~15% full-board FEN accuracy. The final model achieves **63.96% full-board accuracy**, representing a **4× improvement** over prior work.
 
+## Background & Previous Work  
+ChessReD was introduced with the paper [*“End-to-End Chess Recognition”* (Masouris & van Gemert, 2023)](https://arxiv.org/pdf/2310.04086). Their approach trained a ResNeXt-101 CNN to directly predict FEN strings from full input images, without using any geometric preprocessing such as board corner detection or perspective warping. While novel, the method achieved only **15.26% full-board FEN reconstruction accuracy** on ChessReD test images.  
+
+This project improves on that baseline by incorporating an **image processing pipeline** (edge detection, contour detection, and perspective warping) before classification. By transforming angled photos into normalized top-down board views, the model can more reliably identify pieces and board layouts. This preprocessing step, combined with a custom residual CNN, enabled reaching **63.96% accuracy**, a significant step forward compared to the previous state of the art.  
+
+### Example Images from ChessReD  
+The ChessReD dataset consists of smartphone photos of real chessboards under varied lighting and camera angles, along with annotations for where each piece is location on the board, allowing for ground truth FEN labels to be generated easily. Below are sample images:  
+
+<div align="center">
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/chessred1.jpg?raw=true" alt="ChessReD Example 1" width="30%"/>
+  <img src="https://github.com/VedPatel10/chessCV/blob/main/images/chessred2.JPG?raw=true" alt="ChessReD Example 2" width="30%"/>
+</div>
+
 ---
 
 ## Repository Structure
