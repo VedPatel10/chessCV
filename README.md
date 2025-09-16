@@ -110,6 +110,6 @@ Several directions exist to extend this project:
 This project was made as a part of APS360 (Applied Fundamentals of Deep Learning), a University of Toronto undergraduate course.
 
 ## Contributions
-This project would not have been possible without the help of [Gawtham Senthilvelan](https://github.com/Gawthaman), [Luthira Abeykoon](https://github.com/Luthiraa), and Darshan Kasundra.
+This project would not have been possible without the help of [Gawtham Senthilvelan](https://github.com/Gawthaman), [Luthira Abeykoon](https://github.com/Luthiraa), and [Darshan Kasundra](https://github.com/Darshan-Kasundra).
 
 ---
